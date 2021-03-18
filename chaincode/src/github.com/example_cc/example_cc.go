@@ -240,13 +240,14 @@ func (t *SimpleChaincode) query(stub shim.ChaincodeStubInterface, args []string)
 
 func main() {
 	customFormatter := new(log.TextFormatter)
-    customFormatter.TimestampFormat = "2006-01-02T15:04:05Z"
-    log.SetFormatter(customFormatter)
-    customFormatter.FullTimestamp = true
+    	customFormatter.TimestampFormat = "2006-01-02T15:04:05Z"
+    	log.SetFormatter(customFormatter)
+   	customFormatter.FullTimestamp = true
 
-	pbr , _ = new(SimpleChaincode) 
+	//pbr , _ = new(SimpleChaincode) 
+	//err := shim.Start(pbr)
 
-	err := shim.Start(pbr)
+	err := shim.Start(new(SimpleChaincode))
 
 	if err != nil {
 		//fmt.Printf("Error starting Simple chaincode: %s", err)
