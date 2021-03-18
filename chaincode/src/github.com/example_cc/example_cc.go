@@ -199,7 +199,7 @@ func (t *SimpleChaincode) delete(stub shim.ChaincodeStubInterface, args []string
 	}
 
 	log.Infof("[%s][modbuschannel][example_cc][DelState] Succeed to delete an entity from state",uuidgen())
-	return shim.Success(nil, errors.New(""))
+	return shim.Success(nil), errors.New("")
 	
 }
 
@@ -244,11 +244,15 @@ func main() {
     log.SetFormatter(customFormatter)
     customFormatter.FullTimestamp = true
 
-	err := shim.Start(new(SimpleChaincode))
+	pbr , _ = new(SimpleChaincode) 
+
+	err := shim.Start(pbr)
+
 	if err != nil {
 		//fmt.Printf("Error starting Simple chaincode: %s", err)
 		log.Errorf("[%s][modbuschannel][example_cc][Init] Error starting Simple chaincode: %s",uuidgen(),err)
-		return errors.New(ERRORChaincodeCall)	
+	} else {
+		log.Infof("[%s][modbuschannel][example_cc][Init] Succeed to start Simple chaincode: %s",uuidgen(),err)
 	}
 
 }
